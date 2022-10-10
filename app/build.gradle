@@ -1,0 +1,127 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs'
+    id 'kotlin-parcelize'
+    id("com.apollographql.apollo3").version("3.5.0")
+}
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        applicationId "com.andynadal.rocketexplorer"
+        minSdk 24
+        targetSdk 32
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    // Android
+    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    // Apollo
+    implementation("com.apollographql.apollo3:apollo-runtime:3.5.0")
+
+    // Navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    // Fragment
+    implementation "androidx.fragment:fragment-ktx:1.4.0"
+
+    // Activity
+    implementation "androidx.activity:activity-ktx:1.4.0"
+
+    // ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$view_model_version"
+
+    // LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$life_data_version"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+
+    // Coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
+
+    // Dagger Hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    implementation 'com.google.firebase:firebase-common-ktx:20.1.1'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+    // Room
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+//    // Magic
+//    implementation 'link.magic:magic-android:1.0.0'
+//
+//    // DataStore
+//    implementation 'androidx.datastore:datastore:1.0.0'
+//    implementation 'androidx.datastore:datastore-preferences:1.0.0'
+//
+//    // Lottie
+//    implementation 'com.airbnb.android:lottie:3.7.0'
+//
+//    // Logger
+//    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
+//
+//    // Serializable
+//    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2'
+//
+//    // Graphics
+//    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+//
+//    // Biometrics
+//    implementation "androidx.biometric:biometric:$biometric_library_version"
+//
+//    // SwipeRefreshLayout
+//    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+//
+//    // PDF Viewer
+//    implementation "com.github.barteksc:android-pdf-viewer:$pdf_viewer_version"
+//
+//    // Google Api Place
+//    implementation 'com.google.android.libraries.places:places:2.6.0'
+//
+//    // Biometric Authentication
+//    implementation "androidx.biometric:biometric-ktx:1.2.0-alpha04"
+
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+}
+
+apollo {
+    packageName.set("com.andynadal.rocketexplorer")
+}
